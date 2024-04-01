@@ -1,0 +1,44 @@
+table {
+    width: 100%;
+    color: white;
+    border: 0;
+    border-collapse: collapse;
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
+}
+
+table > thead {
+    background-color: #303030;
+    border-radius: 8px 8px 0 0;
+}
+
+table > thead > tr > th {
+    border: none;
+    padding: 20px 30px;
+    font-size: 14px;
+    color: white;
+    border-bottom: 4px solid #2b3036;
+    text-align: inherit;
+    vertical-align: bottom;
+    font-weight: bold;
+}
+
+table > tbody > tr > td {
+    border: none;
+    padding: 20px 30px;
+    border-bottom: 1px solid #2b3036;
+    font-size: 14px;
+    text-align: inherit;
+}
+
+table > tbody > tr {
+    background-color: transparent;
+    transition: .3s all ease;
+}
+
+table > tbody > tr:hover {
+    background-color: #303030;
+}
+
+.click > svg {
+    cursor: pointer;
+}

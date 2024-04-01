@@ -1,0 +1,24 @@
+{   
+    "translation_info": {
+        "language_full_name": "polski",
+        "language_short_name": "pl"
+    },
+    "translation_not_found": "Nie znaleziono takiego tłumaczenia.",
+    "auth": {
+        "title": "Zaloguj się do PHA",
+        "username": "Nazwa użytkownika",
+        "password": "Hasło",
+        "remember_me": "Zapamiętaj mnie",
+        "login": "Zaloguj się",
+        "register_info": "Chcesz założyć konto? Skontaktuj się z administratorem.",
+        "forgot_password": "Zapomniałeś hasła? Skontaktuj się z administratorem.",
+        "login_is_empty": "Nazwa użytkownika nie może być pusta.",
+        "password_is_empty": "Hasło nie może być puste.",
+        "user_no_exists": "Taki użytkownik nie istnieje."
+    },
+    "input_validator": {
+        "is_required": "Pole {inputName} jest wymagane.",
+        "unknown_type": "Pole {inputName} posiada nieprawidłowy typ danych."
+    },
+    "zigbee_devices_managment": "Zarządzanie urządzeniami Zigbee"
+}
