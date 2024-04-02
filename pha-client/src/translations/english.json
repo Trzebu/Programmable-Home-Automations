@@ -4,6 +4,7 @@
         "language_short_name": "en"
     },
     "translation_not_found": "Translation you are searching for is not exists.",
+    "base_loading": "PHA client initializing...",
     "auth": {
         "title": "Login to PHA",
         "username": "Username",

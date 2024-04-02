@@ -12,6 +12,7 @@ var Server_1 = require("./www/server/Server");
 var ZigbeeHandler_1 = require("./zigbee/ZigbeeHandler");
 var SwManager_1 = require("./switch/SwManager");
 var EventManager_1 = __importDefault(require("./EventManager"));
+var AddonsManager_1 = __importDefault(require("./AddonsManager/AddonsManager"));
 var Engine = /** @class */ (function () {
     function Engine() {
         this.saveable = [];
@@ -29,6 +30,7 @@ var Engine = /** @class */ (function () {
     Engine.prototype.init = function () {
         this.swManager = new SwManager_1.SwManager();
         this.espManager = new EspManager_1.EspManager();
+        this.addonsMgr = new AddonsManager_1.default();
     };
     Engine.prototype.update = function () {
         this.saveData();

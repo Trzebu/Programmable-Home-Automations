@@ -6,6 +6,7 @@ export const USERS_DATA = DATA_PATH + "/Users.json";
 export const ZIGBEE_DATA = DATA_PATH + "/Zigbee.json";
 export const ESP_DATA = DATA_PATH + "/Esp.json";
 export const SWITCHES_DATA = DATA_PATH + "/Switches.json";
+export const ADDONS_DATA = DATA_PATH + "/Addons.json";
 export const COOKIES = {
     AGE: 2678400000,
     SESSIONS_NAME: "qId",

@@ -1,21 +1,41 @@
 <script setup lang="ts">
+import LoadingComponent from "@/elements/LoadingComponent.vue";
+import { useAddonStore, type Addon } from "@/stores/addon";
 import { IconChevronRight } from "@tabler/icons-vue";
+import { ref } from "vue";
 
-
+const addonStore = useAddonStore();
+const loading = ref(true);
+const addons = ref<Addon[]>();
 const items = [
     ["/", "Home"],
     ["/switch", "Switches"],
     ["/zigbee", "Zigbee"],
     ["/phaesp", "PHA-ESP"]
-]
+];
+
+(async () => {
+    addons.value = await addonStore.getEnabledAddons();
+    addons.value.forEach(addon => {
+        addon.mainMenuItems.forEach(menuItem => {
+            items.push([
+                menuItem.path, menuItem.name
+            ])
+        })
+    })
+    loading.value = false;
+})();
 
 </script>
 
 <template>
     <ul>
+        <LoadingComponent v-if="loading" />
         <li 
-            v-for="item in items" :key="item[1]" 
+            v-else
+            v-for="item in items"
             @click="$router.push(item[0])"
+            :key="item[1]" 
             :class="item[0].includes($route.fullPath as string) ? 'active' : ''"
         >
             {{ item[1] }}

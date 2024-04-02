@@ -1,1 +1,4 @@
 node_modules
+src/addons
+dist/addons/*
+dist/data/*
