@@ -10,6 +10,14 @@ var AddonsManager = /** @class */ (function () {
         this.addons = [];
         this.load();
     }
+    AddonsManager.prototype.getByName = function (name) {
+        for (var i in this.addons) {
+            var addon = this.addons[i];
+            if (addon.name === name)
+                return addon;
+        }
+        return;
+    };
     AddonsManager.prototype.load = function () {
         var _this = this;
         if (!fs_1.default.existsSync(constants_1.ADDONS_DATA))

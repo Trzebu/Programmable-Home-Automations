@@ -102,5 +102,6 @@
     "name": "Name",
     "action": "Action",
     "delete": "Delete",
-    "invalid_data": "Something is wrong with data you are traying to POST."
+    "invalid_data": "Something is wrong with data you are traying to POST.",
+    "friendly_name": "Friendly name"
 }

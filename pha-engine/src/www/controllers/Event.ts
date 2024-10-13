@@ -11,7 +11,21 @@ export default class Event {
     @Middleware(isAuth)
     public getAllEvents () {
         return Engine.eventMgr.listeners.map(listener => {
-            return listener.path;
+            return {
+                path: listener.path,
+                evtType: listener.evtType
+            };
+        })
+    } 
+
+    @Get("/emitters")
+    @Middleware(isAuth)
+    public getEventsEmitters () {
+        return Engine.eventMgr.emitters.map(emitter => {
+            return {
+                path: emitter.path,
+                evtType: emitter.evtType
+            }
         })
     } 
 

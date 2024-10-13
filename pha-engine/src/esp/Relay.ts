@@ -1,5 +1,6 @@
 import { Engine } from "..";
 import { Esp } from "./Esp";
+import { EventType } from "../events/EventType"
 
 export enum addingRelayExceptions {
     invalid_data,
@@ -34,10 +35,12 @@ export class Relay {
     private initListeners () {
         Engine.eventMgr.listeners.push({
             path: this.path + ".on",
+            evtType: EventType.USE_RELAY,
             cl: () => this.handle("on")
         });
         Engine.eventMgr.listeners.push({
             path: this.path + ".off",
+            evtType: EventType.USE_RELAY,
             cl: () => this.handle("off")
         });
     }

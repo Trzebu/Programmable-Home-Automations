@@ -45,22 +45,30 @@ var MetadataKeys_1 = require("./decorators/MetadataKeys");
 var __1 = require("../..");
 var SearchDecoratedParams_1 = require("./decorators/SearchDecoratedParams");
 var InjectParameters_1 = require("./decorators/InjectParameters");
+var constants_1 = require("../../constants");
 var ControllersLoader = /** @class */ (function () {
     function ControllersLoader() {
         this.controllers = [];
         this.apiTable = [];
-        this.loadControllersClasses();
     }
     ControllersLoader.prototype.loadControllersClasses = function () {
         var _this = this;
-        // loading addons controllers in the future...
-        fs_1.default.readdirSync(process.cwd() + '/src/www/controllers/').forEach(function (className) {
-            _this.controllers.push((function () {
-                var controller = require("../controllers/" + className.split('.')[0]);
-                return controller.default;
-            })());
+        fs_1.default.readdirSync(process.cwd() + '/dist/www/controllers/').forEach(function (className) {
+            _this.controllers.push(_this.requireControllerClass("../controllers/" + className.split('.')[0]));
+        });
+        __1.Engine.addonsMgr.addons.forEach(function (addon) {
+            var ADDON_CONTROLLERS_PATH = "".concat(constants_1.ADDONS_DIR, "/").concat(addon.dir, "/www/controllers");
+            if (!fs_1.default.existsSync(ADDON_CONTROLLERS_PATH))
+                return;
+            fs_1.default.readdirSync(ADDON_CONTROLLERS_PATH).forEach(function (className) {
+                _this.controllers.push(_this.requireControllerClass("../../addons/".concat(addon.dir, "/www/controllers/").concat(className.split('.')[0])));
+            });
         });
         this.loadControllersMethods();
+    };
+    ControllersLoader.prototype.requireControllerClass = function (path) {
+        var controller = require(path);
+        return controller.default;
     };
     ControllersLoader.prototype.loadControllersMethods = function () {
         var _this = this;

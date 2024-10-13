@@ -11,12 +11,12 @@ export class Server {
     public get app(): Express {
         return this._app;
     }
+    public controllers = new ControllersLoader();
 
     constructor () {
         this._app = express();
         this.configure();
         this.app.listen(SERVER_PORT, () => {
-            new ControllersLoader();
             console.log("Server started at " + SERVER_PORT);
         });
     }

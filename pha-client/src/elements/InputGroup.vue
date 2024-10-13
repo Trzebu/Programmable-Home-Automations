@@ -2,7 +2,8 @@
 
 const props = defineProps<{
     name: string,
-    label: string
+    label: string,
+    placeholder?: string
 }>();
 const value = defineModel();
 
@@ -11,7 +12,7 @@ const value = defineModel();
 <template>
     <div class="group">
         <label :for="props.name">{{ props.label }}</label>
-        <input v-model="value" :name="props.name" :id="props.name" type="text" />
+        <input v-model="value" :name="props.name" :id="props.name" type="text" :placeholder="props.placeholder ? props.placeholder : ''" />
     </div>
 </template>
 

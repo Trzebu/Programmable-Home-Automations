@@ -10,6 +10,17 @@ export default class AddonsManager {
         this.load();
     }
 
+    public getByName <T>(name: string) {
+        for (const i in this.addons) {
+            const addon = this.addons[i];
+
+            if (addon.name === name)
+                return addon as T;
+        }
+
+        return;
+    }
+
     private load () {
         if (!fs.existsSync(ADDONS_DATA)) return;
         JSON.parse(fs.readFileSync(ADDONS_DATA, "utf-8")).map((addon: {

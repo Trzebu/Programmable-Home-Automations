@@ -13,10 +13,10 @@ var HttpStatus_1 = require("./HttpStatus");
 var express_session_1 = __importDefault(require("express-session"));
 var Server = /** @class */ (function () {
     function Server() {
+        this.controllers = new ControllersLoader_1.default();
         this._app = (0, express_1.default)();
         this.configure();
         this.app.listen(constants_1.SERVER_PORT, function () {
-            new ControllersLoader_1.default();
             console.log("Server started at " + constants_1.SERVER_PORT);
         });
     }

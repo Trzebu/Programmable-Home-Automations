@@ -22,7 +22,18 @@ var Event = /** @class */ (function () {
     }
     Event.prototype.getAllEvents = function () {
         return __1.Engine.eventMgr.listeners.map(function (listener) {
-            return listener.path;
+            return {
+                path: listener.path,
+                evtType: listener.evtType
+            };
+        });
+    };
+    Event.prototype.getEventsEmitters = function () {
+        return __1.Engine.eventMgr.emitters.map(function (emitter) {
+            return {
+                path: emitter.path,
+                evtType: emitter.evtType
+            };
         });
     };
     __decorate([
@@ -32,6 +43,13 @@ var Event = /** @class */ (function () {
         __metadata("design:paramtypes", []),
         __metadata("design:returntype", void 0)
     ], Event.prototype, "getAllEvents", null);
+    __decorate([
+        (0, Methods_1.Get)("/emitters"),
+        (0, Middleware_1.Middleware)(isAuth_1.isAuth),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", []),
+        __metadata("design:returntype", void 0)
+    ], Event.prototype, "getEventsEmitters", null);
     Event = __decorate([
         (0, Controller_1.default)("/event")
     ], Event);

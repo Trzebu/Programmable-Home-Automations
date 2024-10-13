@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Relay = exports.addingRelayExceptions = void 0;
 var __1 = require("..");
+var EventType_1 = require("../events/EventType");
 var addingRelayExceptions;
 (function (addingRelayExceptions) {
     addingRelayExceptions[addingRelayExceptions["invalid_data"] = 0] = "invalid_data";
@@ -26,10 +27,12 @@ var Relay = /** @class */ (function () {
         var _this = this;
         __1.Engine.eventMgr.listeners.push({
             path: this.path + ".on",
+            evtType: EventType_1.EventType.USE_RELAY,
             cl: function () { return _this.handle("on"); }
         });
         __1.Engine.eventMgr.listeners.push({
             path: this.path + ".off",
+            evtType: EventType_1.EventType.USE_RELAY,
             cl: function () { return _this.handle("off"); }
         });
     };

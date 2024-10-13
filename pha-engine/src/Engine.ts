@@ -7,7 +7,7 @@ import { unix_time } from "./utils/unix_time";
 import { Server } from "./www/server/Server"
 import { ZigbeeHandler } from "./zigbee/ZigbeeHandler";
 import { SwManager } from "./switch/SwManager";
-import EventManager from "./EventManager";
+import EventManager from "./events/EventManager";
 import AddonsManager from "./AddonsManager/AddonsManager";
 
 export class Engine implements Updatable {
@@ -28,8 +28,7 @@ export class Engine implements Updatable {
     constructor () {
         console.log("starting the engine...")
         this.server = new Server();
-        this.users = new UserController(this);
-        this.zigbee = new ZigbeeHandler();
+        this.users = new UserController(this);        
 
         this.updatable.push(this);
 
@@ -38,9 +37,12 @@ export class Engine implements Updatable {
     }
 
     public init () {
+        this.zigbee = new ZigbeeHandler();
         this.swManager = new SwManager();
         this.espManager = new EspManager();
         this.addonsMgr = new AddonsManager();
+        
+        this.server.controllers.loadControllersClasses();
     }
  
     public update () {

@@ -20,7 +20,7 @@ const success = ref(false);
 
 const friendlyName = ref();
 const mqttName = ref();
-const selectedDevice = ref<{ label: string, value: any }>();
+const selectedDevice = ref<{ manufacturer: string, model: string }>();
 
 zigbeeStore.getSupportedDevicesList().then(list => {
     supportedDevicesList.value = list;
@@ -31,8 +31,9 @@ const openModal = () => { isModalOpened.value = true; }
 const closeModal = () => { isModalOpened.value = false; }
 const handleAddDevice = async () => {
     processing.value = true;
+    if (!selectedDevice.value) return;
     errorMessage.value = await zigbeeStore.handleAddNewDevice(
-        friendlyName.value as string, mqttName.value as string, selectedDevice.value?.value
+        friendlyName.value as string, mqttName.value as string, selectedDevice.value
     );
     if (errorMessage.value.length === 0) {
         success.value = true;

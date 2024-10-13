@@ -7,6 +7,7 @@ import { MyRequest } from './MyRequest';
 import { Engine } from '../..';
 import { searchDecoratedParams } from './decorators/SearchDecoratedParams';
 import { InjectParameters } from './decorators/InjectParameters';
+import { ADDONS_DIR } from '../../constants';
 
 type Controller = { [handleName: string]: any };
 
@@ -14,20 +15,29 @@ export default class ControllersLoader {
     private controllers: Controller[] = [];
     private apiTable: Array<{ api: string, handler: string, middleware: string }> = [];
 
-    constructor () {
-        this.loadControllersClasses();
-    }
-
-    private loadControllersClasses () {
-        // loading addons controllers in the future...
-        fs.readdirSync(process.cwd() + '/src/www/controllers/').forEach(className => {
-            this.controllers.push((() => {
-                const controller = require("../controllers/" + className.split('.')[0]);
-                return controller.default;
-            })());
+    public loadControllersClasses () {
+        fs.readdirSync(process.cwd() + '/dist/www/controllers/').forEach(className => {
+            this.controllers.push(
+                this.requireControllerClass("../controllers/" + className.split('.')[0])
+            );
+        });
+        Engine.addonsMgr.addons.forEach(addon => {
+            const ADDON_CONTROLLERS_PATH = `${ADDONS_DIR}/${addon.dir}/www/controllers`;
+            if (!fs.existsSync(ADDON_CONTROLLERS_PATH))
+                return;
+            fs.readdirSync(ADDON_CONTROLLERS_PATH).forEach(className => {
+                this.controllers.push(
+                    this.requireControllerClass(`../../addons/${addon.dir}/www/controllers/${className.split('.')[0]}`)
+                );
+            });
         });
 
         this.loadControllersMethods();
+    }
+
+    private requireControllerClass (path: string) {
+        const controller = require(path);
+        return controller.default;
     }
 
     private loadControllersMethods () {
