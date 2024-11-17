@@ -20,7 +20,7 @@ exports.SESSION = {
     SECRET: "FUcLdQ3GWgrhYAkAiDxs"
 };
 exports.ENGINE_TPS = 15;
-exports.DATA_SAVE_INTERVAL = 600; //seconds
+exports.DATA_SAVE_INTERVAL = 360; //seconds
 exports.MQTT = {
     HOST: "mqtt://localhost"
 };

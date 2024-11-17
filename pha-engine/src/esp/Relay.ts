@@ -25,11 +25,13 @@ export class Relay {
         this.initListeners();
     }
 
-    public handle (state: "on" | "off"): void {
-        if (this.state === state) return;
+    public handle (state: "on" | "off"): boolean {
+        if (!this.esp.online) return false;
+        if (this.state === state) return true;
 
         this.state = state;
         this.esp.ws.send(["set_relay_state", this.name, state].join(","));
+        return true;
     }
 
     private initListeners () {

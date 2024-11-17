@@ -17,7 +17,7 @@ export const SESSION = {
     SECRET: "FUcLdQ3GWgrhYAkAiDxs"
 }
 export const ENGINE_TPS = 15;
-export const DATA_SAVE_INTERVAL = 600; //seconds
+export const DATA_SAVE_INTERVAL = 360; //seconds
 export const MQTT = {
     HOST: "mqtt://localhost"
 }

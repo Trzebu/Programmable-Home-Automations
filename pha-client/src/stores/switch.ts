@@ -40,7 +40,18 @@ export const useSwitchStore = defineStore('switch', () => {
     }
 
     const getSwitches = async () => {
-        return await request<Switch[]>("/switch", "GET");
+        return (await request<Switch[]>("/switch", "GET")).map(sw => {
+            return {
+                name: sw.name,
+                sw_elements: sw.sw_elements.map(swElement => {
+                    return {
+                        state: swElement.state,
+                        action: `/switch/${sw.name}/${swElement.state}`
+                    }
+                }),
+                state: sw.state
+            }
+        });
     }
 
     return { createNewSwitch, getSwitches }

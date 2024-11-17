@@ -13,14 +13,16 @@ const addons = ref<Addon[]>();
 const loading = ref(true);
 
 (async () => {
-    addons.value = await addonStore.getEnabledAddons();
-    addons.value.forEach(async addon => {
-        await translations.loadAddonTranslation(addon);
-    })
     const res = await user.get();
 
-    if (!res)
+    if (!res) {
         router.push("/login");
+    } else {
+        addons.value = await addonStore.getEnabledAddons();
+        addons.value.forEach(async addon => {
+            await translations.loadAddonTranslation(addon);
+        })
+    }
     loading.value = false;
 })();
 

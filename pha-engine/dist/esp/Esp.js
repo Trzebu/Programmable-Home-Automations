@@ -129,7 +129,7 @@ var Esp = /** @class */ (function () {
         this.ws.onclose = this.onWsClose.bind(this);
         this.ws.onmessage = this.onWsMessage.bind(this);
     };
-    Esp.prototype.onWsOpen = function () { console.log("connection establishjed"); };
+    Esp.prototype.onWsOpen = function () { console.log("connection established"); };
     Esp.prototype.onWsClose = function () {
         this.online = false;
         console.log("Esp on ip ".concat(this.ip, " unexpectedly closed connection. Reconnecting..."));

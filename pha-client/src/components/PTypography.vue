@@ -1,16 +1,18 @@
 <script setup lang="ts">
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
     text: string,
-    type: "text" | "danger" | "primary" | "success",
+    type?: "text" | "danger" | "primary" | "success",
     size?: "small" | "regular" | "big",
     weight?: "bold",
     centered?: true
-}>();
+}>(), {
+    type: "text",
+    size: "regular"
+});
 
 const classes: any = [
-    props.type,
-    typeof props.size === 'undefined' ? 'regular' : props.size
+    props.type, props.size
 ];
 
 if (typeof props.weight !== 'undefined')

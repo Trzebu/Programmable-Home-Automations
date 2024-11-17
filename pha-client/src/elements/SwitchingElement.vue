@@ -21,7 +21,7 @@ const handleSwitchState = async (sw: SwElement) => {
     state.value = sw;
     const res = await request<{
         error?: string
-    }>(`/switch/${props.sw.name}/${sw.state}`, "POST");
+    }>(sw.action, "POST");
     if (res.error)
         error.value = _t(res.error);
     loading.value = false;

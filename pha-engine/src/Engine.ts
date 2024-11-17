@@ -9,6 +9,7 @@ import { ZigbeeHandler } from "./zigbee/ZigbeeHandler";
 import { SwManager } from "./switch/SwManager";
 import EventManager from "./events/EventManager";
 import AddonsManager from "./AddonsManager/AddonsManager";
+import { Permissions } from "./Permissions/Permissions";
 
 export class Engine implements Updatable {
 
@@ -20,8 +21,9 @@ export class Engine implements Updatable {
     public zigbee: ZigbeeHandler;
     public espManager: EspManager;
     public swManager: SwManager;
-    public eventMgr = new EventManager();
+    public eventMgr: EventManager;
     public addonsMgr: AddonsManager;
+    public permissions: Permissions;
 
     private lastDataSaveTime = unix_time();
 
@@ -37,6 +39,8 @@ export class Engine implements Updatable {
     }
 
     public init () {
+        this.permissions = new Permissions();
+        this.eventMgr = new EventManager();
         this.zigbee = new ZigbeeHandler();
         this.swManager = new SwManager();
         this.espManager = new EspManager();

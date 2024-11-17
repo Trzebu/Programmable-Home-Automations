@@ -13,14 +13,17 @@ import { translations } from './translations/_t'
     await translations.load();
     const app = createApp(App)
     const addonsViews = await request<AddonView[]>("/addon/enabled/views", "GET");
-
-    addonsViews.forEach(view => {
-        router.addRoute({
-            path: view.path,
-            name: view.path,
-            component: () => import("./addons" + view.view)
+    
+    // should I do it better later?
+    if (typeof addonsViews.length !== "undefined") {
+        addonsViews.forEach(view => {
+            router.addRoute({
+                path: view.path,
+                name: view.path,
+                component: () => import("./addons" + view.view)
+            })
         })
-    })
+    }
         
     app.use(createPinia())
     app.use(router)

@@ -1,6 +1,10 @@
+import { Engine } from "..";
+import { DATA_PATH } from "../constants";
+import Saveable from "../Interfaces/Saveable";
 import { EventType } from "./EventType";
+import fs from "fs";
 
-export default class EventManager {
+export default class EventManager implements Saveable {
 
     public emitters: {
         path: string,
@@ -11,12 +15,26 @@ export default class EventManager {
         evtType: EventType,
         cl: (...args: any) => void
     }[] = [];
+    public entitiesData: {
+        path: string,
+        time: number,
+        data: any
+    }[] = [];
 
-    public emit (path: string, ...args: any) {
+    private ENTITIES_DATA_PATH = `${DATA_PATH}/entities_data.json`;
+
+    constructor () {
+        this.loadData();
+        Engine.saveable.push(this);
+    }
+
+    public emit <T>(path: string, ...args: any): T {
+        let response;
         this.listeners.forEach(listener => {
             if (listener.path === path)
-                listener.cl(...args);
+                response = listener.cl(...args);
         });
+        return response as T;
     }
 
     public exists (path: string) {
@@ -29,6 +47,23 @@ export default class EventManager {
         return this.emitters.filter(e => {
             return e.path === path;
         }).length > 0;
+    }
+
+    public save () {
+        fs.writeFile(
+            this.ENTITIES_DATA_PATH, 
+            JSON.stringify(this.entitiesData),
+            "utf-8",
+            err => {
+                if (err) throw err;
+            }
+        );
+    }
+
+    private loadData () {
+        if (!fs.existsSync(this.ENTITIES_DATA_PATH)) return;
+        
+        this.entitiesData = JSON.parse(fs.readFileSync(this.ENTITIES_DATA_PATH, "utf-8"));
     }
 
 }

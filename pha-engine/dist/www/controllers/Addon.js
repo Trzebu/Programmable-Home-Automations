@@ -47,7 +47,6 @@ var Addon = /** @class */ (function () {
     ], Addon.prototype, "getEnabledAddons", null);
     __decorate([
         (0, Methods_1.Get)("/enabled/views"),
-        (0, Middleware_1.Middleware)(isAuth_1.isAuth),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", []),
         __metadata("design:returntype", void 0)

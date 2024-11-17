@@ -18,10 +18,13 @@ var Relay = /** @class */ (function () {
         this.initListeners();
     }
     Relay.prototype.handle = function (state) {
+        if (!this.esp.online)
+            return false;
         if (this.state === state)
-            return;
+            return true;
         this.state = state;
         this.esp.ws.send(["set_relay_state", this.name, state].join(","));
+        return true;
     };
     Relay.prototype.initListeners = function () {
         var _this = this;

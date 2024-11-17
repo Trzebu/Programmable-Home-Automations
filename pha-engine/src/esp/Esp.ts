@@ -98,7 +98,7 @@ export class Esp {
         this.ws.onmessage = this.onWsMessage.bind(this);
     }
 
-    private onWsOpen () {console.log("connection establishjed")}
+    private onWsOpen () {console.log("connection established")}
 
     private onWsClose () {
         this.online = false;

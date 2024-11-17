@@ -6,6 +6,7 @@ export class User {
     public username: string;
     public password: string;
     public rememberMeToken: string;
+    public permissions: number[] = [];
 
     public async matchPassword (password: string) {
         return await bcrypt.compare(password, this.password);

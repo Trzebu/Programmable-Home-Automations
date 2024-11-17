@@ -43,6 +43,7 @@ exports.User = void 0;
 var bcrypt_1 = __importDefault(require("bcrypt"));
 var User = /** @class */ (function () {
     function User() {
+        this.permissions = [];
     }
     User.prototype.matchPassword = function (password) {
         return __awaiter(this, void 0, void 0, function () {

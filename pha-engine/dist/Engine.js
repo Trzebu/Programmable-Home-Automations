@@ -13,11 +13,11 @@ var ZigbeeHandler_1 = require("./zigbee/ZigbeeHandler");
 var SwManager_1 = require("./switch/SwManager");
 var EventManager_1 = __importDefault(require("./events/EventManager"));
 var AddonsManager_1 = __importDefault(require("./AddonsManager/AddonsManager"));
+var Permissions_1 = require("./Permissions/Permissions");
 var Engine = /** @class */ (function () {
     function Engine() {
         this.saveable = [];
         this.updatable = [];
-        this.eventMgr = new EventManager_1.default();
         this.lastDataSaveTime = (0, unix_time_1.unix_time)();
         console.log("starting the engine...");
         this.server = new Server_1.Server();
@@ -27,6 +27,8 @@ var Engine = /** @class */ (function () {
         setInterval(this.mainLoop.bind(this), 1000 / constants_1.ENGINE_TPS);
     }
     Engine.prototype.init = function () {
+        this.permissions = new Permissions_1.Permissions();
+        this.eventMgr = new EventManager_1.default();
         this.zigbee = new ZigbeeHandler_1.ZigbeeHandler();
         this.swManager = new SwManager_1.SwManager();
         this.espManager = new EspManager_1.EspManager();

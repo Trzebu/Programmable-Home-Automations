@@ -22,7 +22,6 @@ export default class Addon {
     }
 
     @Get("/enabled/views")
-    @Middleware(isAuth)
     public getEnabledAddonsViews () {
         const views: {
             path: string;
