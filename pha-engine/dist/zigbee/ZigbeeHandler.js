@@ -9,7 +9,7 @@ var constants_1 = require("../constants");
 var __1 = require("..");
 var fs_1 = __importDefault(require("fs"));
 var List_1 = require("./devices/List");
-var DeiceToClass_1 = require("./devices/DeiceToClass");
+var DeviceToClass_1 = require("./devices/DeviceToClass");
 var ZigbeeHandler = /** @class */ (function () {
     function ZigbeeHandler() {
         var _this = this;
@@ -62,7 +62,7 @@ var ZigbeeHandler = /** @class */ (function () {
         var _this = this;
         var device = List_1.DevicesList.filter(function (device) { return device.manufacturer === manufacturer && device.model === model; })[0];
         device.category.map(function (category) {
-            _this.entities.push(new DeiceToClass_1.DeviceToClass[category](mqttName, name, device));
+            _this.entities.push(new DeviceToClass_1.DeviceToClass[category](mqttName, name, device));
         });
         this.save();
     };

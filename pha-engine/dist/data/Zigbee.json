@@ -1,1 +1,1 @@
-[{"friendlyName":"THSensorWithScreen","mqttName":"THSensorWithScreen","config":{"manufacturer":"TuYa","model":"ZTH05"}}]
+[{"friendlyName":"THSensorWithScreen","mqttName":"THSensorWithScreen","config":{"manufacturer":"TuYa","model":"ZTH05"}},{"friendlyName":"HomePthSensor","mqttName":"LivingRoomPthSensor","config":{"manufacturer":"Aqara","model":"WSDCGQ11LM"}}]

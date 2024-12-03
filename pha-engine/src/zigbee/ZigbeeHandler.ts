@@ -5,7 +5,7 @@ import Saveable from "../Interfaces/Saveable";
 import { Engine } from "..";
 import fs from 'fs';
 import { DevicesList } from "./devices/List";
-import { DeviceToClass } from "./devices/DeiceToClass";
+import { DeviceToClass } from "./devices/DeviceToClass";
 
 export class ZigbeeHandler implements Saveable {
 
