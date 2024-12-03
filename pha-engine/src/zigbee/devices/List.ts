@@ -28,6 +28,19 @@ export const DevicesList: DeviceConfiguration[] = [{
     }
 }, {
     manufacturer: "Aqara",
+    model: "WSDCGQ01LM",
+    category: [DeviceCategory.TEMPERATURE_SENSOR, DeviceCategory.HUMIDITY_SENSOR, DeviceCategory.PRESSURE_SENSOR],
+    wireless: true,
+    exposes: {
+        linkquality: MqttStates.Linkquality,
+        humidity: MqttStates.Humidity,
+        temperature: MqttStates.Temperature,
+        pressure: MqttStates.Pressure,
+        battery: MqttStates.Battery,
+        voltage: MqttStates.Voltage
+    }
+}, {
+    manufacturer: "Aqara",
     model: "WXKG11LM",
     category: [DeviceCategory.BUTTON],
     wireless: true,

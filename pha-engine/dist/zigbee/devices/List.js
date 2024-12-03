@@ -30,6 +30,19 @@ exports.DevicesList = [{
         }
     }, {
         manufacturer: "Aqara",
+        model: "WSDCGQ01LM",
+        category: [Entity_1.DeviceCategory.TEMPERATURE_SENSOR, Entity_1.DeviceCategory.HUMIDITY_SENSOR, Entity_1.DeviceCategory.PRESSURE_SENSOR],
+        wireless: true,
+        exposes: {
+            linkquality: MqttStates_1.MqttStates.Linkquality,
+            humidity: MqttStates_1.MqttStates.Humidity,
+            temperature: MqttStates_1.MqttStates.Temperature,
+            pressure: MqttStates_1.MqttStates.Pressure,
+            battery: MqttStates_1.MqttStates.Battery,
+            voltage: MqttStates_1.MqttStates.Voltage
+        }
+    }, {
+        manufacturer: "Aqara",
         model: "WXKG11LM",
         category: [Entity_1.DeviceCategory.BUTTON],
         wireless: true,
